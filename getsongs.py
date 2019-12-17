@@ -2,14 +2,16 @@ import requests
 import spotipy
 import spotipy.util as util
 from bs4 import BeautifulSoup
-import pprint
+from spotipy.oauth2 import SpotifyClientCredentials
 
+# get the url from the website
 website = "https://www.radiox.co.uk/radio/last-played-songs/"
 page = requests.get(website)
 soup = BeautifulSoup(page.content, "html.parser")
 tracks = []
 artists = []
 
+# get list of artists and tracks
 for a in soup.find_all("div", id=lambda x: x and x.startswith('song_promo_')):
     try:
         track = a.find('span', attrs={'class': 'track'})
@@ -41,34 +43,34 @@ for a in soup.find_all("div", id=lambda x: x and x.startswith('song_promo_')):
 
 artist = None
 track = None
-# we now have artists and tracks, which are the songs to add
 
-# for track in tracks:
-    # print(track)
-
-#for artist in artists:
-    # print(artist)
-
+# get the login details from .txt later will be proper auth
 f = open("details.txt", "r")
 cid = (f.readline())
 secret = (f.readline())
 username = f.readline()
 f.close()
 scope = 'playlist-modify-private'
-url = 'https://localhost:8888/callback'
+url = 'https://www.google.com/'
+cid = (cid.strip())
+secret = (secret.strip())
+username = (username.strip())
 
+# authentication stuff
+client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 token = util.prompt_for_user_token(username, scope, client_id=cid, client_secret=secret,
-                                   redirect_uri='https://www.google.com/')
+                                   redirect_uri=url)
+if token:
+    sp = spotipy.Spotify(auth=token)
+else:
+    print("Can't get token for", username)
 
-sp = spotipy.Spotify(token)
-
+# search the artist and song names and get the IDs from it
 track_ids = []
-
 for i in range(len(tracks)):
-    track = None
     track = sp.search(q='artist:' + artists[i] + ' track:' + tracks[i], type='track', limit=1)
     track_ids.append(track['tracks']['items'])
-
 spotify_tracks = []
 
 for track in track_ids:
@@ -77,26 +79,7 @@ for track in track_ids:
     except:
         isTrue = True
 
-
-
-# ids = [track_ids[0][0]['uri'], track_ids[1][0]['uri']]
-
-# for track in tracks:
-#     print()
-
+# create a playlist titled radio x and add the list of songs to it
 playlist = sp.user_playlist_create(username, "Radio X", public=False)
-
 playlist = playlist['id']
-
 sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=spotify_tracks)
-
-# credentials = oauth2.SpotifyClientCredentials(
-#       client_id=CLIENT_ID,
-#        client_secret=CLIENT_SECRET)
-# oauth2.SpotifyClientCredentials(s)
-#
-# token = credentials.get_access_token()
-# spotify = spotipy.Spotify(auth=token)
-# track = "coldplay yellow"
-# res = spotify.search(track, type="track", limit=1)
-# print(res)
