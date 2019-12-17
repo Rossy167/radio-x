@@ -24,7 +24,7 @@ def read_songs(html):
             tracks.append(track)
             artists.append(artist)
         except:
-            print("my code is bad and i should feel bad")
+            is_true = True
 
     artist = None
 
@@ -39,7 +39,8 @@ def read_songs(html):
                     tracks.append(track)
                     artists.append(artist)
         except:
-            print("my code is bad and i should feel bad")
+            is_true = True
 
+    print("total songs: " + str(len(tracks)))
     songs = [tracks, artists]
     return songs

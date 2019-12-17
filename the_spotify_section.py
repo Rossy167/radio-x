@@ -21,6 +21,7 @@ def simple_authenticate(cid, secret, username):
 
 
 def find_tracks_in_spotify(songs, sp):
+    not_on_spotify = 0
     track_ids = []
     for i in range(len(songs[0])):
         track = sp.search(q='artist:' + songs[1][i] + ' track:' + songs[0][i], type='track', limit=1)
@@ -31,13 +32,14 @@ def find_tracks_in_spotify(songs, sp):
         try:
             spotify_tracks.append(track[0]['uri'])
         except:
-            print("i don't think this song is on spotify")
-
+            not_on_spotify += 1
+    print("not on spotify: " + str(not_on_spotify))
     return spotify_tracks
 
 
 def add_to_playlist(spotify_tracks, sp, username, playlist):
-    sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=spotify_tracks)
+    sp.user_playlist_replace_tracks(username, playlist_id=playlist, tracks=spotify_tracks)
+    print("tracks: " + str(len(spotify_tracks)))
 
 
 def create_playlist(sp, username):
@@ -56,7 +58,6 @@ def get_playlist(sp, username):
             return playlist['id']
     playlist = create_playlist(sp, username)
     return playlist
-
 
 # details = simple_authenticate("my", "secret", "stuff")
 # playlist = get_playlist(details[0], details[1])
