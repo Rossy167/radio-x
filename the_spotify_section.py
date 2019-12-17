@@ -33,6 +33,8 @@ def find_tracks_in_spotify(songs, sp):
         except:
             print("i don't think this song is on spotify")
 
+    return spotify_tracks
+
 
 def add_to_playlist(spotify_tracks, sp, username, playlist):
     sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=spotify_tracks)
