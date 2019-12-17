@@ -50,7 +50,7 @@ cid = (f.readline())
 secret = (f.readline())
 username = f.readline()
 f.close()
-scope = 'playlist-modify-private'
+scope = 'playlist-modify-public'
 url = 'https://www.google.com/'
 cid = (cid.strip())
 secret = (secret.strip())
@@ -80,6 +80,6 @@ for track in track_ids:
         isTrue = True
 
 # create a playlist titled radio x and add the list of songs to it
-playlist = sp.user_playlist_create(username, "Radio X", public=False)
+playlist = sp.user_playlist_create(username, "Radio X (code generated)", public=True)
 playlist = playlist['id']
 sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=spotify_tracks)
