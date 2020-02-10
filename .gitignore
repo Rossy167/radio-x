@@ -56,4 +56,6 @@ radiox_files/sctl.js.download
 radiox_files/userContent.js.download
 .idea/radiox.iml
 *.txt
+*.csv
 .cache-8razjqybhwf15wb30znvm4f9g
+__pycache__
