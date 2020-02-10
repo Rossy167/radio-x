@@ -1,16 +1,26 @@
 import csv
 import the_html_bit
 import the_spotify_section
+import sys
 
-# QD solution for details, probably store as environment variables later
-with open('details.csv') as csvfile:
-    readCSV = csv.reader(csvfile, delimiter=',')
-    for line in readCSV:
-        authentication = {
-            "cid": line[0].strip(),
-            "secret": line[1].strip(),
-            "username": line[2].strip()
-        }
+# args solution
+# to use environment variables with?
+if len(sys.argv) == 4:
+    authentication = {
+        "cid": sys.argv[1].strip(),
+        "secret": sys.argv[2].strip(),
+        "username": sys.argv[3].strip()
+    }
+else:
+    # QD solution for details, probably store as environment variables later
+    with open('details.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        for line in readCSV:
+            authentication = {
+                "cid": line[0].strip(),
+                "secret": line[1].strip(),
+                "username": line[2].strip()
+            }
 
 # songs are listed at this url
 url = "https://www.radiox.co.uk/radio/last-played-songs/"
