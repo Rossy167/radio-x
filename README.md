@@ -4,10 +4,10 @@ Generates Spotify playlist from Last Played Songs on Radio X
 
 ## Before You Start
 
-The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .txt with the order client ID, secret ID, username. Probably best not mess with it at this phase, until I've got proper authentication going. But the core function works.
+The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Probably best not mess with it at this phase, until I've got proper authentication going. But the core function works.
 
 ### Working On 
 
-My short term task is to refactor all of the code to be a little more professional. The future plan for this is to have 2 forks: a flask or other web app type version that users can authenticate into with Spotify and then have it generate playlists for them, and a scheduled task to be ran on a server or home automation type device.
+This project is going to have 2 implementations, both being quite different. One being a node.js application that uses the Implicit Grant auth flow, because it's very clean and easy for the user. The other will be a simple Python program that runs on a backend server on scheduled basis. The Python program will use Authorization Code flow as it's being ran long term in a secure location.
 
-Authentication is probably the core difficulty in making both these forks work. I want users to be able to simply go to a website, it'll say "connect to spotify" at which point you're hooked up to a spotify login page and confirm button, then sorted. The scheduled task one will need some kind of automation to reauthenticate itself after the tokens expire.
+Currently the project only includes the Python program, which is about prepped for setting up on the server. The core functionality that needs adding is a setup file and the addition command line arguments to pass in the auth keys as environment variables rather than in a plain text .csv 
