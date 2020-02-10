@@ -58,4 +58,6 @@ radiox_files/userContent.js.download
 *.txt
 *.csv
 .cache-8razjqybhwf15wb30znvm4f9g
-__pycache__
+__pycache__/
+.idea/
+*.pyc
