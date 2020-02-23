@@ -2,12 +2,15 @@
 
 Generates Spotify playlist from Last Played Songs on Radio X 
 
-## Before You Start
+## Where I am at:
 
-The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Probably best not mess with it at this phase, until I've got proper authentication going. But the core function works.
+I am currently rewriting this project in JavaScript. I was hoping to find a way to get this working in the terminal on a raspberry pi, but it seems spotify will not allow authentication without a web browser.
 
-### Working On 
+### Before You Start
 
-This project is going to have 2 implementations, both being quite different. One being a node.js application that uses the Implicit Grant auth flow, because it's very clean and easy for the user. The other will be a simple Python program that runs on a backend server on scheduled basis. The Python program will use Authorization Code flow as it's being ran long term in a secure location.
+The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Alternatively, you can entire the details as args with the order client ID, secret ID, username. 
 
-Currently the project only includes the Python program, which is about prepped for setting up on the server. The core functionality that needs adding is a setup file to pass in the auth keys as environment variables in the args rather than in a plain text .csv 
+
+#### Explanation
+
+Currently this code is intended to be ran on the backend, Spotify's API is not ideal for this, but I am using it as a regularly scheduled script on a Raspberry Pi. I am intending on rewriting some of the code in JavaScript and potentially putting it in a web environment.
