@@ -4,11 +4,11 @@ Generates Spotify playlist from Last Played Songs on Radio X
 
 ### Where I am at:
 
-I am currently rewriting this project in JavaScript. I was hoping to find a way to get this working in the terminal on a raspberry pi, but it seems spotify will not allow authentication without a web browser.
+This portion of the project is done, and I am working on getting a few things sorted i.e logging older playlists for posterity. I am currently rewriting this project in JavaScript. I was hoping to find a way to get this working in the terminal on a raspberry pi, but it seems spotify will not allow authentication without a web browser. Therefore, I am running it on a GUI version of Raspian, but this isn't ideal.
 
 ### Before You Start
 
-The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Alternatively, you can entire the details as args with the order client ID, secret ID, username. 
+The environment that you're running in it is going to need the Spotipy, Requests and BeautifulSoup4 libraries. I suggest creating a new venv in the radiox directory. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Alternatively, you can entire the details as args with the order client ID, secret ID, username. 
 
 
 ### Explanation
