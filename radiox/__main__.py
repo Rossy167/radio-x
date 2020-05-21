@@ -4,10 +4,13 @@ try:
     import the_html_bit
     import the_spotify_section
 except ImportError:
+    print('')
     print('Cannot import the modules required for Radio X')
     print('Did you run the setup script?')
     print('If so... did you activate the venv before running')
     print('You can run from start.sh or start.ps1 or you can activate the venv at __projectdir__/radiox/radiox_environment')
+    print('')
+    quit()
 
 def radiox(url):
 
