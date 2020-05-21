@@ -1,29 +1,42 @@
-# Radio X Playlist Generator
+## radio-x
 
-Generates Spotify playlist from Last Played Songs on Radio X 
+Web Scraper that generates a Spotify playlist based on last played songs on Radio X. 
+Uses the URL at https://www.radiox.co.uk/radio/last-played-songs/
 
-### Where I am at:
+### Usage
+Uses Beautiful Soup and Spotify's API to generate a Spotify playlist based on a html file from Radio X
 
-This portion of the project is done, and I am working on getting a few things sorted i.e logging older playlists for posterity. I am planning on rewriting this project in JavaScript, but have a few other things going on right now. I was hoping to find a way to get this working in the terminal on a raspberry pi, but it seems spotify will not allow authentication without a web browser. Therefore, I am running it on a GUI version of Raspian, but this isn't ideal.
+### Setup
+You will need to generate a venv, some setup scripts are provided to get this going.
 
-### Before You Start
+Mac/Linux:
+* cd into root directory for (should be radio-x or radio-x-master)
+* run `bash setup/setup.sh (chmod to x if on Linux)`
 
-The environment uses the Spotipy, Requests and BeautifulSoup4 libraries. It uses authentication by getting your tokens from a .csv with the order client ID, secret ID, username. Alternatively, you can entire the details as args with the order client ID, secret ID, username. 
+Windows:
+* Use Powershell, no intention of making this work for cmd.exe
+* cd into root directory for (should be radio-x or radio-x-master) 
+* run `.\setup\setup.ps1`
 
-### Installation
+### Using
+Mac/Linux (with script):
+* cd into root directory and run `bash start.sh`
 
-To download the code:
+Mac/Linux (without script):
+* cd into root directory and run `source python radiox/radiox_environment/bin/activate`
+* run `python radiox`
 
-```git clone https://github.com/rossy167/radiox```
+Windows(with script):
+* cd into root directory
+* Using Powershell run `.\start.ps1
 
-Traverse into your newly downloaded code repo:
+Windows:
+* cd into root directory
+* Using Powershell run .\radiox\radiox_environment\Scripts\Activate.ps1
+* run python radiox
 
-```cd radiox```
-
-Install the requirements with:
-
-```pipenv install --ignore-pipfile```
-
-### Explanation
-
-Currently this code is intended to be ran on the backend, Spotify's API is not ideal for this, but I am using it as a regularly scheduled script on a Raspberry Pi. I am intending on rewriting some of the code in JavaScript and potentially putting it in a web environment.
+### Resources Used
+* https://www.radiox.co.uk/radio/last-played-songs/
+* https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+* https://spotipy.readthedocs.io/en/2.12.0/
+* https://www.w3schools.com/python/module_requests.asp
