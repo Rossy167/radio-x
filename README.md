@@ -1,3 +1,6 @@
+## WARNING
+This likely doesn't work anymore, as was made many years ago.
+
 ## radio-x
 
 Web Scraper that generates a Spotify playlist based on last played songs on Radio X. 
